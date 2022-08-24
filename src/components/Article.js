@@ -1,14 +1,14 @@
-function Article({article}) {  
+function Article({ article }) {
 
 
-  console.log(article);
-  
+  //console.log(article);
+
   return (
     <>
-     <div>{article.story_title} by {article.author}</div>
-     
+      <div>{article.title} by {article.author}</div>
+
     </>
   );
-  }
-  
-  export default Article;
+}
+
+export default Article;
