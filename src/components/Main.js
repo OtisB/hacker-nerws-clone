@@ -4,22 +4,30 @@ import { useState, useEffect } from "react";
 
 function Main() {
 
-  const url = 'http://hn.algolia.com/api/v1/search_by_date?query=30';
-
   const [articles, setArticles] = useState([]);
+  const [query, setQuery] = useState();
+  const [userInput, setUserInput] = useState('');
 
   useEffect(() => {
     console.clear();
 
+    const url = `http://hn.algolia.com/api/v1/search?query=${query}`;
+
     fetch(url)
-      // fetch("http://hn.algolia.com/api/v1/search_by_date?query=30")
       .then((response) => response.json())
       .then((data) => {
         setArticles(data.hits);
       })
       .catch((error) => console.log('error ', error));
 
-  }, []);
+  }, [query]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    setQuery(userInput);
+    setUserInput('');
+  };
 
   return (
     <>
@@ -28,18 +36,25 @@ function Main() {
           return (
             <Article
               article={article}
-              key={crypto.randomUUID()}
+              key={article.objectID}
+            // key={crypto.randomUUID()}              //check if objectID is really unique
             />
           );
         })
-        : "no articles yet yet"}
+        : "no articles yet"}
 
-      <label htmlFor="search">Search: </label>
-      <input type="text" name="search" id="search" />
+      <form onSubmit={handleSubmit} method="Post">
+        <input
+          type="text"
+          search="input"
+          id="search"
+          onChange={(event) => setUserInput(event.target.value)}
+          value={userInput}
+          placeholder="Search..."
+        />
 
-      <button>Start Search</button>
-      {/* <input type="button" /> */}
-      {/* <input type="button" onClick={ } /> */}
+        <button type="submit">Start Search</button>
+      </form>
     </>
   );
 }
