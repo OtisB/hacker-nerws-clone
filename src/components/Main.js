@@ -7,20 +7,35 @@ function Main() {
   const [articles, setArticles] = useState([]);
   const [query, setQuery] = useState();
   const [userInput, setUserInput] = useState('');
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     console.clear();
 
     const url = `http://hn.algolia.com/api/v1/search?query=${query}`;
+    //const url = `http://hn.algolia.com/arch?query=${query}`;    //error testing
 
-    fetch(url)
-      .then((response) => response.json())
+    request(url);
+
+  }, [query]);
+
+  const request = (u) => {
+    fetch(u)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error('Failed to fetch from this resource');
+        }
+        return response.json();
+      })
       .then((data) => {
         setArticles(data.hits);
       })
-      .catch((error) => console.log('error ', error));
-
-  }, [query]);
+      .catch((err) => {
+        alert(err.message);
+        setError(err.message);
+        setArticles([]);
+      });
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,20 +44,28 @@ function Main() {
     setUserInput('');
   };
 
+  const getContent = () => {
+    // if (!articles.length) {
+    //   return <div className="alertMessage">No result matches the query</div>;
+    // }
+    return (
+      articles.map((article) => {
+        return (<Article
+          article={article}
+          key={article.objectID}
+        // key={crypto.randomUUID()}              //check if objectID is really unique
+        />
+        )
+      })
+    );
+  };
+
   return (
     <>
-      {articles.length
-        ? articles.map((article) => {
-          return (
-            <Article
-              article={article}
-              key={article.objectID}
-            // key={crypto.randomUUID()}              //check if objectID is really unique
-            />
-          );
-        })
-        : "no articles yet"}
-
+      <div className="articles-section">
+        {error && <div className="error-message"> {error} </div>}
+        {articles && getContent()}
+      </div>
 
       <div className="footer">
         <div className="orange-line"></div>
@@ -87,8 +110,6 @@ function Main() {
           </form>
         </div>
       </div>
-
-
     </>
   );
 }
