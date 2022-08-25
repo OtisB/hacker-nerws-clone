@@ -34,10 +34,6 @@ function Footer() {
             <a href="#">Contact</a>
           </div>
         </div>
-        <form>
-          <label>Search</label>
-          <input type="text"></input>
-        </form>
       </div>
     </>
   );
