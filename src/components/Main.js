@@ -8,6 +8,7 @@ function Main() {
   const [query, setQuery] = useState();
   const [userInput, setUserInput] = useState('');
   const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
     console.clear();
@@ -29,11 +30,13 @@ function Main() {
       })
       .then((data) => {
         setArticles(data.hits);
+        setIsPending(false);
         setError(null);
       })
       .catch((err) => {
         alert(err.message);
         setError(err.message);
+        setIsPending(false);
         setArticles([]);
       });
   }
@@ -46,16 +49,14 @@ function Main() {
   };
 
   const getContent = () => {
-    // if (!articles.length) {
-    //   return <div className="alertMessage">No result matches the query</div>;
-    // }
     return (
       articles.map((article) => {
-        return (<Article
-          article={article}
-          key={article.objectID}
-        // key={crypto.randomUUID()}              //check if objectID is really unique
-        />
+        return (
+          <Article
+            article={article}
+            key={article.objectID}
+          // key={crypto.randomUUID()}              //check if objectID is really unique
+          />
         )
       })
     );
@@ -65,6 +66,7 @@ function Main() {
     <>
       <div className="articles-section">
         {error && <div className="error-message"> {error} </div>}
+        {isPending && <div className="pending-message">Loading...</div>}    {/* or spinner */}
         {articles && getContent()}
       </div>
 
