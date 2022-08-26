@@ -1,0 +1,29 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.orange-line {
+  background-color: #ff6600;
+  height: 2px;
+  margin-bottom: 1em;
+}
+
+.footer,
+.articles-section {
+  text-align: center;
+  background-color: #f6f6ef;
+  padding-bottom: 2em;
+}
+
+.application {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.2em;
+  margin-bottom: 1em;
+}
