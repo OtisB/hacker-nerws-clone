@@ -1,6 +1,7 @@
 import "./Article.css";
 
-function Article({ article }) {
+function Article({ article, index }) {
+  console.log(index);
   function host(url) {
     let hostName = "";
 
@@ -17,6 +18,7 @@ function Article({ article }) {
   return (
     <div className="article-container">
       <div className="upper-row">
+        <span>{`${index + 1}.`}</span>
         <a href={article.url} target="_blank" className="article-title">
           {article.title},
         </a>

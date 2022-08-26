@@ -49,12 +49,14 @@ function Main() {
 
   const getContent = () => {
 
+
     return (
       articles.map((article) => {
         return (
           <Article
             article={article}
             key={article.objectID}
+
           // key={crypto.randomUUID()}              //check if objectID is really unique
           />
         )
