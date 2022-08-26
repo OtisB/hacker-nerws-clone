@@ -34,10 +34,6 @@ function Footer() {
             <a href="https://www.ycombinator.com/apply/">Contact</a>
           </div>
         </div>
-        <form>
-          <label>Search</label>
-          <input type="text"></input>
-        </form>
       </div>
     </>
   );
