@@ -29,6 +29,7 @@ function Main() {
       })
       .then((data) => {
         setArticles(data.hits);
+        setError(null);
       })
       .catch((err) => {
         alert(err.message);
