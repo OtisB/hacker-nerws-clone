@@ -8,15 +8,17 @@ function Main() {
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(true);
+  const [page, setPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
 
-  const URL = `http://hn.algolia.com/api/v1/search?query=${query}`;
+  const URL = `http://hn.algolia.com/api/v1/search?hitsPerPage=3&query=${query}`;   //for testing hitsPerPage=3
   //const URL = `http://hn.algolia.com/arch?query=${query}`;    //error testing
 
   useEffect(() => {
     console.clear();
 
     request(URL);
-  }, [query]);
+  }, [query, page]);
 
   const request = (u) => {
     fetch(u)
@@ -28,14 +30,16 @@ function Main() {
       })
       .then((data) => {
         setArticles(data.hits);
+        setMaxPage(data.nPages);
         setIsPending(false);
         setError(null);
       })
       .catch((err) => {
-        alert(err.message);
+        // alert(err.message);
         setError(err.message);
         setIsPending(false);
         setArticles([]);
+        setMaxPage(0);
       });
   };
 
@@ -65,7 +69,6 @@ function Main() {
       <div className="articles-section">
         {error && <div className="error-message"> {error} </div>}
         {isPending && <div className="pending-message">Loading...</div>}{" "}
-        {/* {articles.length && getContent()} */}
         {articles.length ? getContent() : ''}
       </div>
 
@@ -117,6 +120,7 @@ function Main() {
             placeholder="Search..."
           />
           <button type="submit">Start Search</button>
+          {/* TODO Pagination */}
         </form>
       </div>
     </>
