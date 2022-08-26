@@ -5,8 +5,8 @@ function Header() {
     <>
       <div className="nav-bar">
         <div className="items-container">
+          <div className="white-y">Y</div>
           <div className="wrapper-nav-item1">
-            <div className="white-y">Y</div>
             <div className="nav-item1">Hacker News</div>
           </div>
           <div className="wrapper-nav-items">

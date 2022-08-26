@@ -20,7 +20,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   width: 45%;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
