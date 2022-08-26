@@ -10,9 +10,10 @@ a {
 
 .nav-bar {
   background-color: #ff6600;
-  height: 27px;
+  height: 25px;
   display: flex;
   justify-content: space-between;
+  font-size: 14px;
 }
 
 .nav-item1 {
@@ -28,7 +29,7 @@ a {
   width: 1rem;
   padding: 0 0.15em 0.15em;
   text-align: center;
-  margin-left: 0.2rem;
+  margin-right: 0.18rem;
 }
 
 .nav-item1 {
@@ -37,7 +38,7 @@ a {
 
 .items-container {
   display: flex;
-  width: 57%;
+  width: 45%;
   justify-content: space-between;
   align-items: center;
 }
@@ -46,4 +47,10 @@ a {
   align-items: center;
   display: flex;
   padding-right: 0.4em;
+}
+
+@media only screen and (max-width: 1170px) {
+  .nav-item1 {
+    color: red;
+  }
 }
