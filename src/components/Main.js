@@ -46,9 +46,10 @@ function Main() {
     // if (!articles.length) {
     //   return <div className="alertMessage">No result matches the query</div>;
     // }
-    return articles.map((article) => {
+    return articles.map((article, index) => {
       return (
         <Article
+          index={index}
           article={article}
           key={article.objectID}
           // key={crypto.randomUUID()}              //check if objectID is really unique
