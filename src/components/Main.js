@@ -103,7 +103,7 @@ function Main() {
             <a href="https://www.ycombinator.com/apply/">Apply to YC</a>
           </div>
           <div>|</div>
-          <div>
+          <div className="contact">
             <a href="https://www.ycombinator.com/apply/">Contact</a>
           </div>
         </div>
