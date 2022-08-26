@@ -1,4 +1,5 @@
 import "./Article.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Article({ article, index }) {
   console.log(index);
@@ -17,22 +18,27 @@ function Article({ article, index }) {
 
   return (
     <div className="article-container">
-      <div className="upper-row">
-        <span>{`${index + 1}.`}</span>
-        <a href={article.url} target="_blank" className="article-title">
-          {article.title},
-        </a>
-        <a href={article.url} target="_blank" className="article-site">
-          {" "}
-          ({host(article.url)})
-        </a>
+      <div className="prefix">
+        {`${index + 1}.`}
+        <FontAwesomeIcon icon="{[fa-solid fa-caret-up]}" />
       </div>
-      <div className="lower-row">
-        <p>
-          {article.points} points by
-          <a href="#"> {article.author}</a> |<a href="#"> hide</a> |
-          <a href="#"> ({article.num_comments} comments)</a>
-        </p>
+      <div className="article-wrapper">
+        <div className="upper-row">
+          <a href={article.url} target="_blank" className="article-title">
+            {article.title},
+          </a>
+          <a href={article.url} target="_blank" className="article-site">
+            {" "}
+            ({host(article.url)})
+          </a>
+        </div>
+        <div className="lower-row">
+          <p>
+            {article.points} points by
+            <a href="#"> {article.author}</a> |<a href="#"> hide</a> |
+            <a href="#"> ({article.num_comments} comments)</a>
+          </p>
+        </div>
       </div>
     </div>
   );

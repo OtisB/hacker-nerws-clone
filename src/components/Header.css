@@ -10,7 +10,6 @@ a {
 
 .nav-bar {
   background-color: #ff6600;
-
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -20,12 +19,13 @@ a {
   display: flex;
   flex-wrap: wrap;
   width: 45%;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .wrapper-nav-item1 {
   display: flex;
+  margin-right: 0.5rem;
 }
 
 .wrapper-nav-items {

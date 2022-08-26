@@ -16,7 +16,6 @@ function Main() {
     console.clear();
 
     request(URL);
-
   }, [query]);
 
   const request = (u) => {
@@ -48,27 +47,25 @@ function Main() {
   };
 
   const getContent = () => {
-
-
-    return (
-      articles.map((article) => {
-        return (
-          <Article
-            article={article}
-            key={article.objectID}
+    return articles.map((article, index) => {
+      return (
+        <Article
+          index={index}
+          article={article}
+          key={article.objectID}
 
           // key={crypto.randomUUID()}              //check if objectID is really unique
-          />
-        )
-      })
-    );
+        />
+      );
+    });
   };
 
   return (
     <>
       <div className="articles-section">
         {error && <div className="error-message"> {error} </div>}
-        {isPending && <div className="pending-message">Loading...</div>}    {/* or spinner */}
+        {isPending && <div className="pending-message">Loading...</div>}{" "}
+        {/* or spinner */}
         {articles.length && getContent()}
       </div>
 
