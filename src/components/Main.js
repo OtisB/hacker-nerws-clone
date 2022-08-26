@@ -9,13 +9,14 @@ function Main() {
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(true);
 
+  const URL = `http://hn.algolia.com/api/v1/search?query=${query}`;
+  //const URL = `http://hn.algolia.com/arch?query=${query}`;    //error testing
+
   useEffect(() => {
     console.clear();
+    
+    request(URL);
 
-    const url = `http://hn.algolia.com/api/v1/search?query=${query}`;
-    //const url = `http://hn.algolia.com/arch?query=${query}`;    //error testing
-
-    request(url);
   }, [query]);
 
   const request = (u) => {
@@ -66,7 +67,7 @@ function Main() {
       <div className="articles-section">
         {error && <div className="error-message"> {error} </div>}
         {isPending && <div className="pending-message">Loading...</div>}    {/* or spinner */}
-        {articles && getContent()}
+        {articles.length && getContent()}
       </div>
 
       <div className="footer">
