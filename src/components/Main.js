@@ -7,14 +7,16 @@ function Main() {
   const [query, setQuery] = useState();
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+
+  const URL = `http://hn.algolia.com/api/v1/search?query=${query}`;
+  //const URL = `http://hn.algolia.com/arch?query=${query}`;    //error testing
 
   useEffect(() => {
     console.clear();
+    
+    request(URL);
 
-    const url = `http://hn.algolia.com/api/v1/search?query=${query}`;
-    //const url = `http://hn.algolia.com/arch?query=${query}`;    //error testing
-
-    request(url);
   }, [query]);
 
   const request = (u) => {
@@ -27,10 +29,13 @@ function Main() {
       })
       .then((data) => {
         setArticles(data.hits);
+        setIsPending(false);
+        setError(null);
       })
       .catch((err) => {
         alert(err.message);
         setError(err.message);
+        setIsPending(false);
         setArticles([]);
       });
   };
@@ -43,26 +48,28 @@ function Main() {
   };
 
   const getContent = () => {
-    // if (!articles.length) {
-    //   return <div className="alertMessage">No result matches the query</div>;
-    // }
-    return articles.map((article, index) => {
-      return (
-        <Article
-          index={index}
-          article={article}
-          key={article.objectID}
+
+
+    return (
+      articles.map((article) => {
+        return (
+          <Article
+            article={article}
+            key={article.objectID}
+
           // key={crypto.randomUUID()}              //check if objectID is really unique
-        />
-      );
-    });
+          />
+        )
+      })
+    );
   };
 
   return (
     <>
       <div className="articles-section">
         {error && <div className="error-message"> {error} </div>}
-        {articles && getContent()}
+        {isPending && <div className="pending-message">Loading...</div>}    {/* or spinner */}
+        {articles.length && getContent()}
       </div>
 
       <div className="footer">
