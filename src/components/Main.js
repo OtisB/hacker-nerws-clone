@@ -54,7 +54,7 @@ function Main() {
           article={article}
           key={article.objectID}
 
-          // key={crypto.randomUUID()}              //check if objectID is really unique
+        // key={crypto.randomUUID()}              //check if objectID is really unique
         />
       );
     });
@@ -65,8 +65,8 @@ function Main() {
       <div className="articles-section">
         {error && <div className="error-message"> {error} </div>}
         {isPending && <div className="pending-message">Loading...</div>}{" "}
-        {/* or spinner */}
-        {articles.length && getContent()}
+        {/* {articles.length && getContent()} */}
+        {articles.length ? getContent() : ''}
       </div>
 
       <div className="footer">

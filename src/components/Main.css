@@ -41,5 +41,5 @@ a {
 
 .error-message,
 .pending-message {
-  margin-top: 3rem;
+  padding-top: 2rem;
 }
