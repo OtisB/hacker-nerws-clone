@@ -31,7 +31,7 @@ function Footer() {
             <a href="https://www.ycombinator.com/apply/">Apply to YC |</a>
           </div>
           <div>
-            <a href="#">Contact</a>
+            <a href="https://www.ycombinator.com/apply/">Contact</a>
           </div>
         </div>
         <form>
