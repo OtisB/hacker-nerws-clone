@@ -9,23 +9,29 @@ function Header() {
             <div>Y</div>Hacker News
           </div>
           <div>
-            <a href="https://news.ycombinator.com/newest">new |</a>
+            <a href="https://news.ycombinator.com/newest">new</a>
           </div>
+          <div>|</div>
           <div>
-            <a href="https://news.ycombinator.com/front">past |</a>
+            <a href="https://news.ycombinator.com/front">past</a>
           </div>
+          <div>|</div>
           <div>
-            <a href="https://news.ycombinator.com/newcomments">comments |</a>
+            <a href="https://news.ycombinator.com/newcomments">comments</a>
           </div>
+          <div>|</div>
           <div>
-            <a href="https://news.ycombinator.com/ask">ask |</a>
+            <a href="https://news.ycombinator.com/ask">ask</a>
           </div>
+          <div>|</div>
           <div>
-            <a href="https://news.ycombinator.com/show">show |</a>
+            <a href="https://news.ycombinator.com/show">show</a>
           </div>
+          <div>|</div>
           <div>
-            <a href="https://news.ycombinator.com/jobs">jobs |</a>
+            <a href="https://news.ycombinator.com/jobs">jobs</a>
           </div>
+          <div>|</div>
           <div>
             <a href="https://news.ycombinator.com/submit">submit</a>
           </div>
