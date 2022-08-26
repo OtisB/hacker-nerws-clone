@@ -14,7 +14,7 @@ function Main() {
 
   useEffect(() => {
     console.clear();
-    
+
     request(URL);
 
   }, [query]);
