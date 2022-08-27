@@ -1,4 +1,5 @@
 import Article from "./Article";
+import Pagination from "./Pagination";
 import "./Main.css";
 import { useState, useEffect } from "react";
 
@@ -8,17 +9,19 @@ function Main() {
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(true);
+  const [page, setPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
+  const [hitsPerPage, setHitsPerPage] = useState(20);
 
-  const URL = `http://hn.algolia.com/api/v1/search?query=${query}`;
-  //const URL = `http://hn.algolia.com/arch?query=${query}`;    //error testing
+  const URL = `http://hn.algolia.com/api/v1/search?hitsPerPage=${hitsPerPage}&tags=story&&restrictSearchableAttributes=title&query=${query}&page=${page}`;
 
   useEffect(() => {
     console.clear();
 
     request(URL);
-  }, [query]);
+  }, [query, page]);
 
-  const request = (u) => {
+  function request(u) {
     fetch(u)
       .then((response) => {
         if (!response.ok) {
@@ -27,15 +30,20 @@ function Main() {
         return response.json();
       })
       .then((data) => {
+        console.log('hits fetch', data.nbHits);
+        console.log('pages fetch', data.nbPages);
+
         setArticles(data.hits);
+        setMaxPage(data.nbPages);
         setIsPending(false);
         setError(null);
       })
       .catch((err) => {
-        alert(err.message);
+        // alert(err.message);
         setError(err.message);
         setIsPending(false);
         setArticles([]);
+        setMaxPage(0);
       });
   };
 
@@ -43,6 +51,7 @@ function Main() {
     event.preventDefault();
 
     setQuery(userInput);
+    setPage(0);
     setUserInput("");
   };
 
@@ -50,7 +59,7 @@ function Main() {
     return articles.map((article, index) => {
       return (
         <Article
-          index={index}
+          index={index + (hitsPerPage * page)}
           article={article}
           key={article.objectID}
 
@@ -65,7 +74,6 @@ function Main() {
       <div className="articles-section">
         {error && <div className="error-message"> {error} </div>}
         {isPending && <div className="pending-message">Loading...</div>}{" "}
-        {/* {articles.length && getContent()} */}
         {articles.length ? getContent() : ''}
       </div>
 
@@ -115,8 +123,16 @@ function Main() {
             onChange={(event) => setUserInput(event.target.value)}
             value={userInput}
             placeholder="Search..."
+            disabled={isPending || error}
           />
-          <button type="submit">Start Search</button>
+          <button type="submit" disabled={isPending || error}>Start Search</button>
+          <Pagination
+            isPending={isPending}
+            error={error}
+            maxPage={maxPage}
+            page={page}
+            setPage={setPage}
+          />
         </form>
       </div>
     </>

@@ -2,7 +2,6 @@ import "./Article.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Article({ article, index }) {
-  console.log(index);
   function host(url) {
     let hostName = "";
 
