@@ -1,6 +1,6 @@
 import "./Article.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { fa-solid fa-caret-up } from '@fortawesome/free-solid-svg-icons'
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 function Article({ article, index }) {
   function host(url) {
@@ -16,13 +16,13 @@ function Article({ article, index }) {
     return hostName;
   }
 
-  const votUpIcon = <FontAwesomeIcon icon="{[fa-solid fa-caret-up]}" />;
+  const votUpIcon = <FontAwesomeIcon icon={faCaretUp} />;
 
   return (
     <div className="article-container">
       <div className="prefix">
         {`${index + 1}.`}
-        {votUpIcon}
+        <span className="upvote-btn">{votUpIcon}</span>
       </div>
       <div className="article-wrapper">
         <div className="upper-row">
