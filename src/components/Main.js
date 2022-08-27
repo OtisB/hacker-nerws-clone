@@ -1,4 +1,5 @@
 import Article from "./Article";
+import Pagination from "./Pagination";
 import "./Main.css";
 import { useState, useEffect } from "react";
 
@@ -10,9 +11,9 @@ function Main() {
   const [isPending, setIsPending] = useState(true);
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
+  const [hitsPerPage, setHitsPerPage] = useState(20);
 
-  const URL = `http://hn.algolia.com/api/v1/search?hitsPerPage=3&query=${query}`;   //for testing hitsPerPage=3
-  //const URL = `http://hn.algolia.com/arch?query=${query}`;    //error testing
+  const URL = `http://hn.algolia.com/api/v1/search?hitsPerPage=${hitsPerPage}&tags=story&&restrictSearchableAttributes=title&query=${query}&page=${page}`;
 
   useEffect(() => {
     console.clear();
@@ -20,7 +21,7 @@ function Main() {
     request(URL);
   }, [query, page]);
 
-  const request = (u) => {
+  function request(u) {
     fetch(u)
       .then((response) => {
         if (!response.ok) {
@@ -29,8 +30,11 @@ function Main() {
         return response.json();
       })
       .then((data) => {
+        console.log('hits fetch', data.nbHits);
+        console.log('pages fetch', data.nbPages);
+
         setArticles(data.hits);
-        setMaxPage(data.nPages);
+        setMaxPage(data.nbPages);
         setIsPending(false);
         setError(null);
       })
@@ -47,6 +51,7 @@ function Main() {
     event.preventDefault();
 
     setQuery(userInput);
+    setPage(0);
     setUserInput("");
   };
 
@@ -54,7 +59,7 @@ function Main() {
     return articles.map((article, index) => {
       return (
         <Article
-          index={index}
+          index={index + (hitsPerPage * page)}
           article={article}
           key={article.objectID}
 
@@ -118,9 +123,16 @@ function Main() {
             onChange={(event) => setUserInput(event.target.value)}
             value={userInput}
             placeholder="Search..."
+            disabled={isPending || error}
           />
-          <button type="submit">Start Search</button>
-          {/* TODO Pagination */}
+          <button type="submit" disabled={isPending || error}>Start Search</button>
+          <Pagination
+            isPending={isPending}
+            error={error}
+            maxPage={maxPage}
+            page={page}
+            setPage={setPage}
+          />
         </form>
       </div>
     </>

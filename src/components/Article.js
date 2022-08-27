@@ -19,7 +19,7 @@ function Article({ article, index }) {
     <div className="article-container">
       <div className="prefix">
         {`${index + 1}.`}
-        {/* <FontAwesomeIcon icon="{[fa-solid fa-caret-up]}" /> */}
+        <FontAwesomeIcon icon="{[fa-solid fa-caret-up]}" />
       </div>
       <div className="article-wrapper">
         <div className="upper-row">
