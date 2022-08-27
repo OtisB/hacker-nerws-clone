@@ -10,6 +10,8 @@
   display: flex;
   margin-left: 0.5rem;
   color: #8a8a8a;
+  font-size: 0.9rem;
+  margin-top: 0.1rem;
 }
 
 .article-wrapper {
@@ -19,8 +21,8 @@
 }
 
 .article-title {
-  font-size: 0.9rem;
-  font-weight: 445;
+  font-size: 0.8rem;
+  font-weight: 460;
 }
 
 .article-site {

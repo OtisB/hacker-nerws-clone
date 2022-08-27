@@ -6,36 +6,38 @@ function Header() {
       <div className="nav-bar">
         <div className="items-container">
           <div className="white-y">Y</div>
-          <div className="wrapper-nav-item1">
-            <div className="nav-item1">Hacker News</div>
-          </div>
-          <div className="wrapper-nav-items">
-            <div>
-              <a href="https://news.ycombinator.com/newest">new</a>
+          <div className="wrapper-all-nav-items">
+            <div className="wrapper-nav-item1">
+              <div className="nav-item1">Hacker News</div>
             </div>
-            <div>|</div>
-            <div>
-              <a href="https://news.ycombinator.com/front">past</a>
-            </div>
-            <div>|</div>
-            <div>
-              <a href="https://news.ycombinator.com/newcomments">comments</a>
-            </div>
-            <div>|</div>
-            <div>
-              <a href="https://news.ycombinator.com/ask">ask</a>
-            </div>
-            <div>|</div>
-            <div>
-              <a href="https://news.ycombinator.com/show">show</a>
-            </div>
-            <div>|</div>
-            <div>
-              <a href="https://news.ycombinator.com/jobs">jobs</a>
-            </div>
-            <div>|</div>
-            <div>
-              <a href="https://news.ycombinator.com/submit">submit</a>
+            <div className="wrapper-nav-items">
+              <div>
+                <a href="https://news.ycombinator.com/newest">new</a>
+              </div>
+              <div>|</div>
+              <div>
+                <a href="https://news.ycombinator.com/front">past</a>
+              </div>
+              <div>|</div>
+              <div>
+                <a href="https://news.ycombinator.com/newcomments">comments</a>
+              </div>
+              <div>|</div>
+              <div>
+                <a href="https://news.ycombinator.com/ask">ask</a>
+              </div>
+              <div>|</div>
+              <div>
+                <a href="https://news.ycombinator.com/show">show</a>
+              </div>
+              <div>|</div>
+              <div>
+                <a href="https://news.ycombinator.com/jobs">jobs</a>
+              </div>
+              <div>|</div>
+              <div>
+                <a href="https://news.ycombinator.com/submit">submit</a>
+              </div>
             </div>
           </div>
         </div>
