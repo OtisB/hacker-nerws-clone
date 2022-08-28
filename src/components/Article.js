@@ -7,9 +7,9 @@ function Article({ article, index }) {
     let hostName = "";
 
     if (url) {
-      const tmp = url.split("//"); //[https:, restOfUrl]
-      const restOfUrl = tmp[1].split("/"); //[domain, rest1, ....]
-      hostName = restOfUrl[0]; //domain
+      const tmp = url.split("//");
+      const restOfUrl = tmp[1].split("/");
+      hostName = restOfUrl[0];
 
       return hostName;
     }

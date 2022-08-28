@@ -16,8 +16,6 @@ function Main() {
   const URL = `http://hn.algolia.com/api/v1/search?hitsPerPage=${hitsPerPage}&tags=story&&restrictSearchableAttributes=title&query=${query}&page=${page}`;
 
   useEffect(() => {
-    console.clear();
-
     request(URL);
   }, [query, page]);
 
@@ -30,8 +28,6 @@ function Main() {
         return response.json();
       })
       .then((data) => {
-        console.log('hits fetch', data.nbHits);
-        console.log('pages fetch', data.nbPages);
 
         setArticles(data.hits);
         setMaxPage(data.nbPages);
@@ -39,7 +35,6 @@ function Main() {
         setError(null);
       })
       .catch((err) => {
-        // alert(err.message);
         setError(err.message);
         setIsPending(false);
         setArticles([]);
@@ -62,8 +57,6 @@ function Main() {
           index={index + (hitsPerPage * page)}
           article={article}
           key={article.objectID}
-
-        // key={crypto.randomUUID()}              //check if objectID is really unique
         />
       );
     });
@@ -74,7 +67,7 @@ function Main() {
       <div className="articles-section">
         {error && <div className="error-message"> {error} </div>}
         {isPending && <div className="pending-message">Loading...</div>}{" "}
-        {articles.length ? getContent() : ''}
+        {articles.length > 0 && getContent()}
       </div>
 
       <div className="footer">
