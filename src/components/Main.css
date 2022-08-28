@@ -43,3 +43,12 @@ a {
 .pending-message {
   padding-top: 2rem;
 }
+
+input {
+  margin: 0.5rem 0.5rem;
+}
+
+.pagination input {
+  width: 2rem;
+  text-align: center;
+}

@@ -126,14 +126,14 @@ function Main() {
             disabled={isPending || error}
           />
           <button type="submit" disabled={isPending || error}>Start Search</button>
-          <Pagination
-            isPending={isPending}
-            error={error}
-            maxPage={maxPage}
-            page={page}
-            setPage={setPage}
-          />
         </form>
+        <Pagination
+          isPending={isPending}
+          error={error}
+          maxPage={maxPage}
+          page={page}
+          setPage={setPage}
+        />
       </div>
     </>
   );
