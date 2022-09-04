@@ -15,6 +15,12 @@ a {
   font-size: 14px;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
 .wrapper-all-nav-items {
   display: flex;
   align-items: center;
